@@ -1,0 +1,1 @@
+Download SAP Crystal report runtime a/c to your system (64 bit or 32 bit) and visual code (2022)
