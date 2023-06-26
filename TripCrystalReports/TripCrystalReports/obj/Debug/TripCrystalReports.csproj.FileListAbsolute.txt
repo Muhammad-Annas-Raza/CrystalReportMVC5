@@ -90,3 +90,5 @@ C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\obj\Debug\T
 C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\obj\Debug\TripCrystalReports.csproj.CopyComplete
 C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\obj\Debug\TripCrystalReports.dll
 C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\obj\Debug\TripCrystalReports.pdb
+C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\bin\Reports\Employee.rpt
+C:\Users\This PC\Desktop\Annas\TripCrystalReports\TripCrystalReports\bin\Reports\Employee.cs

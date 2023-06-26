@@ -1,4 +1,5 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,9 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using TripCrystalReports.Models;
+using System.Diagnostics;
+
+
 
 namespace TripCrystalReports.Controllers
 {
@@ -40,6 +44,38 @@ namespace TripCrystalReports.Controllers
                 throw;
             }
         }
+
+	//Opens Report in new tab
+        public ActionResult OpenReport()
+        {
+          
+                // Generate the Crystal Report and get the report document
+                var reportDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            // Set the path to your Crystal Report file (.rpt)
+            reportDocument.Load(Path.Combine(Server.MapPath("~/Reports"), "Employee.rpt")); // Path to your report template
+
+            reportDocument.SetDataSource(ConvertListToDataTable<tbl_Employee>(db.tbl_Employee.ToList()));
+
+            // Export the report to a PDF file
+            var reportStream = reportDocument.ExportToStream(
+                    CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+
+                // Create a new window or browser tab and display the report PDF
+                Response.ClearContent();
+                Response.ClearHeaders();
+                Response.Buffer = true;
+                Response.ContentType = "application/pdf";
+                Response.AddHeader("content-disposition", "inline; filename=YourReport.pdf");
+            byte[] byteArray = new byte[reportStream.Length];
+            reportStream.Read(byteArray, 0, (int)reportStream.Length);
+            Response.BinaryWrite(byteArray);
+                Response.Flush();
+                Response.End();
+
+                return View();
+            
+        }
+
 
         private DataTable ConvertListToDataTable<T>(List<T> list)
         {
